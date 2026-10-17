@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Product catalog item from SI5 Global or viral curation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "brand": { "type": "string", "maxLength": 100 },
+        "codbar": { "type": "string", "maxLength": 64 },
+        "price": { "type": "number" },
+        "preco_estimado": { "type": "number" },
+        "preco_confirmado": { "type": "number" },
+        "preco_venda": { "type": "number" },
+        "tipo_preco": { "type": "string", "maxLength": 32 },
+        "image_url": { "type": "string", "maxLength": 1000 },
+        "stock": { "type": "number" },
+        "created_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["name", "category", "price", "image_url"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order with shipping and payment info",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "customer_name": { "type": "string", "maxLength": 150 },
+        "customer_phone": { "type": "string", "maxLength": 50 },
+        "customer_email": { "type": "string", "maxLength": 150 },
+        "total": { "type": "number" },
+        "status": { "type": "string" },
+        "created_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["customer_name", "customer_phone", "total", "status"]
+    }
+  },
+  "firestore": {
+    "/produtos_vitrine/{productId}": {
+      "schema": "Product",
+      "description": "Published store products visible to public buyers (max 50)"
+    },
+    "/produtos_selecionados_admin/{productId}": {
+      "schema": "Product",
+      "description": "Admin selected products queue for publication"
+    },
+    "/product_api_cache/{cacheKey}": {
+      "schema": "Product",
+      "description": "Server-side cache for SI5 API responses (24h TTL)"
+    },
+    "/api_usage_daily/{dateKey}": {
+      "schema": "Product",
+      "description": "Daily quota tracking and counter for SI5 API calls"
+    },
+    "/store_publication_versions/{versionId}": {
+      "schema": "Product",
+      "description": "Historical logs of published store versions"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Legacy catalog products"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Customer purchase orders"
+    }
+  }
+}

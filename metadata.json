@@ -1,0 +1,6 @@
+{
+  "name": "Compraê - E-commerce Brasileiro",
+  "description": "Loja moderna Compraê com produtos virais, cálculo de frete Correios em tempo real, checkout integrado com InfinitePay e painel administrativo completo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
